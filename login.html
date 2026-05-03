@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>RifaPro — Entrar</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #07060A;
+  --bg2: #0F0D14;
+  --bg3: #16131E;
+  --s1: #1E1A2A;
+  --s2: #28233A;
+  --c1: #8B5CF6;
+  --c2: #6D28D9;
+  --c3: #A78BFA;
+  --cyan: #06B6D4;
+  --gold: #F59E0B;
+  --green: #10B981;
+  --red: #EF4444;
+  --border: rgba(139,92,246,.18);
+  --border2: rgba(255,255,255,.06);
+  --t1: #F5F3FF;
+  --t2: #9CA3AF;
+  --t3: #4B5563;
+  --r: 16px;
+  --rs: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--t1);
+  font-family: 'Outfit', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ─── BACKGROUND ─────────────────────────────── */
+.bg-canvas {
+  position: fixed; inset: 0; z-index: 0; overflow: hidden;
+}
+.bg-canvas::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 20%, rgba(109,40,217,.25) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 80% 80%, rgba(6,182,212,.15) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 60% 30%, rgba(245,158,11,.08) 0%, transparent 50%);
+}
+.grid-lines {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(139,92,246,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139,92,246,.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+.float-orbs {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(60px); opacity: .3;
+  animation: orbFloat linear infinite;
+}
+.orb1 { width:300px;height:300px;background:var(--c1);top:10%;left:5%;animation-duration:20s;animation-delay:0s; }
+.orb2 { width:200px;height:200px;background:var(--cyan);bottom:15%;right:8%;animation-duration:25s;animation-delay:-8s; }
+.orb3 { width:150px;height:150px;background:var(--gold);top:60%;left:45%;animation-duration:18s;animation-delay:-4s; }
+@keyframes orbFloat {
+  0%,100% { transform: translateY(0) scale(1); }
+  33% { transform: translateY(-30px) scale(1.05); }
+  66% { transform: translateY(20px) scale(.95); }
+}
+
+/* ─── SPLIT LAYOUT ───────────────────────────── */
+.layout {
+  display: flex;
+  width: 100%; min-height: 100vh;
+  position: relative; z-index: 1;
+}
+
+/* LEFT PANEL */
+.left-panel {
+  width: 46%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 48px;
+  position: relative;
+  border-right: 1px solid var(--border2);
+  background: rgba(7,6,10,.4);
+  backdrop-filter: blur(2px);
+}
+.left-logo {
+  display: flex; align-items: center; gap: 12px;
+}
+.logo-icon {
+  width: 42px; height: 42px;
+  background: linear-gradient(135deg, var(--c1), var(--cyan));
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 8px 24px rgba(139,92,246,.4);
+}
+.logo-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px; font-weight: 800;
+}
+.logo-text span { color: var(--c3); }
+
+.left-hero { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 40px 0; }
+.left-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(139,92,246,.1);
+  border: 1px solid rgba(139,92,246,.25);
+  border-radius: 50px; padding: 6px 14px;
+  font-size: 12px; color: var(--c3);
+  width: fit-content; margin-bottom: 28px;
+  animation: fadeUp .6s ease both;
+}
+.left-tag-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--c1);
+  animation: pulse-dot 1.6s infinite;
+}
+@keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:.3} }
+.left-h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 800; line-height: 1.08;
+  margin-bottom: 20px;
+  animation: fadeUp .6s .08s ease both;
+}
+.left-h1 .grad {
+  background: linear-gradient(135deg, var(--c3), var(--cyan));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.left-sub {
+  font-size: 15px; color: var(--t2); line-height: 1.7;
+  max-width: 380px;
+  animation: fadeUp .6s .16s ease both;
+}
+
+.features {
+  display: flex; flex-direction: column; gap: 14px;
+  margin-top: 36px;
+  animation: fadeUp .6s .24s ease both;
+}
+.feature-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--border2);
+  border-radius: var(--rs);
+  transition: .2s;
+}
+.feature-item:hover { border-color: var(--border); background: rgba(139,92,246,.05); }
+.feature-icon {
+  width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 16px;
+}
+.fi-purple { background: rgba(139,92,246,.15); }
+.fi-cyan { background: rgba(6,182,212,.15); }
+.fi-gold { background: rgba(245,158,11,.15); }
+.fi-green { background: rgba(16,185,129,.15); }
+.feature-text h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 2px; }
+.feature-text p { font-size: 12px; color: var(--t2); line-height: 1.5; }
+
+.left-bottom {
+  font-size: 12px; color: var(--t3);
+  animation: fadeUp .6s .32s ease both;
+}
+
+/* RIGHT PANEL */
+.right-panel {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px 48px;
+  overflow-y: auto;
+}
+.auth-box {
+  width: 100%; max-width: 420px;
+  animation: fadeUp .5s ease both;
+}
+
+/* TAB SWITCH */
+.auth-tabs {
+  display: flex; gap: 4px;
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 50px; padding: 4px;
+  margin-bottom: 32px;
+}
+.auth-tab {
+  flex: 1; padding: 9px;
+  border-radius: 50px; border: none;
+  font-size: 14px; font-weight: 500;
+  cursor: pointer; transition: .2s;
+  font-family: 'Outfit', sans-serif;
+  color: var(--t2); background: transparent;
+}
+.auth-tab.active {
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(139,92,246,.35);
+}
+
+/* FORM */
+.auth-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 26px; font-weight: 800;
+  margin-bottom: 6px;
+}
+.auth-sub {
+  font-size: 14px; color: var(--t2); margin-bottom: 28px; line-height: 1.6;
+}
+
+.form-screen { display: none; }
+.form-screen.active { display: block; }
+
+.fg { margin-bottom: 16px; }
+.fg label {
+  display: block; font-size: 13px; color: var(--t2); margin-bottom: 6px;
+}
+.input-wrap { position: relative; }
+.input-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  font-size: 15px; pointer-events: none;
+}
+.fg input {
+  width: 100%; padding: 12px 14px 12px 40px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--rs);
+  color: var(--t1); font-size: 14px; font-family: 'Outfit', sans-serif;
+  outline: none; transition: .2s;
+}
+.fg input:focus {
+  border-color: var(--c1);
+  box-shadow: 0 0 0 3px rgba(139,92,246,.14);
+  background: var(--s1);
+}
+.fg input::placeholder { color: var(--t3); }
+.fg input.error { border-color: var(--red); box-shadow: 0 0 0 3px rgba(239,68,68,.1); }
+.fg input.ok { border-color: var(--green); }
+.field-hint { font-size: 11.5px; color: var(--t3); margin-top: 5px; }
+.field-error { font-size: 11.5px; color: var(--red); margin-top: 5px; display: none; }
+
+.fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+
+/* PASSWORD STRENGTH */
+.pw-strength { margin-top: 8px; }
+.pw-bars { display: flex; gap: 4px; margin-bottom: 5px; }
+.pw-bar { height: 3px; flex: 1; border-radius: 2px; background: var(--s2); transition: .3s; }
+.pw-bar.weak { background: var(--red); }
+.pw-bar.medium { background: var(--gold); }
+.pw-bar.strong { background: var(--green); }
+.pw-label { font-size: 11px; color: var(--t3); }
+
+/* SUBMIT BTN */
+.btn-auth {
+  width: 100%; padding: 13px;
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+  color: #fff; border: none; border-radius: var(--rs);
+  font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: .2s;
+  font-family: 'Outfit', sans-serif;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  position: relative; overflow: hidden;
+  margin-top: 8px;
+  box-shadow: 0 4px 20px rgba(139,92,246,.3);
+}
+.btn-auth::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.1), transparent);
+  opacity: 0; transition: .2s;
+}
+.btn-auth:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(139,92,246,.45); }
+.btn-auth:hover::after { opacity: 1; }
+.btn-auth:active { transform: scale(.98); }
+.btn-auth:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.btn-spinner {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.3); border-top-color: #fff;
+  animation: spin .6s linear infinite; display: none;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* DIVIDER */
+.divider { display: flex; align-items: center; gap: 12px; margin: 20px 0; }
+.divider-line { flex: 1; height: 1px; background: var(--border2); }
+.divider-text { font-size: 12px; color: var(--t3); }
+
+/* GOOGLE BTN */
+.btn-google {
+  width: 100%; padding: 12px;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--rs); color: var(--t1);
+  font-size: 14px; font-weight: 500; cursor: pointer;
+  font-family: 'Outfit', sans-serif; transition: .2s;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.btn-google:hover { border-color: rgba(255,255,255,.15); background: var(--s1); }
+.google-icon { width: 18px; height: 18px; }
+
+/* TERMS */
+.terms-text {
+  font-size: 12px; color: var(--t3); text-align: center;
+  margin-top: 16px; line-height: 1.6;
+}
+.terms-text a { color: var(--c3); text-decoration: none; }
+.terms-text a:hover { text-decoration: underline; }
+
+/* FORGOT */
+.forgot-link {
+  font-size: 12.5px; color: var(--c3);
+  text-decoration: none; float: right;
+  transition: .2s;
+}
+.forgot-link:hover { color: var(--t1); }
+
+/* ALERT */
+.alert {
+  border-radius: var(--rs); padding: 12px 14px;
+  font-size: 13px; margin-bottom: 18px;
+  display: none; align-items: flex-start; gap: 10px;
+  animation: fadeUp .2s ease;
+}
+.alert.show { display: flex; }
+.alert.success { background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.25); color: #34D399; }
+.alert.error { background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.25); color: #F87171; }
+.alert.info { background: rgba(139,92,246,.1); border: 1px solid rgba(139,92,246,.25); color: var(--c3); }
+.alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* VERIFY SCREEN */
+.verify-screen {
+  text-align: center; padding: 20px 0;
+  display: none;
+}
+.verify-screen.active { display: block; }
+.verify-icon { font-size: 64px; margin-bottom: 20px; animation: pop .5s cubic-bezier(.36,.07,.19,.97); }
+@keyframes pop { 0%{transform:scale(0)} 60%{transform:scale(1.15)} 100%{transform:scale(1)} }
+.verify-title { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+.verify-sub { font-size: 14px; color: var(--t2); line-height: 1.7; margin-bottom: 24px; }
+.verify-email-display {
+  background: var(--s1); border: 1px solid var(--border);
+  border-radius: var(--rs); padding: 10px 16px;
+  font-size: 14px; color: var(--c3); font-weight: 600;
+  margin: 0 auto 24px; width: fit-content;
+}
+.btn-resend {
+  background: transparent; border: 1px solid var(--border);
+  border-radius: var(--rs); padding: 10px 24px;
+  font-size: 13px; color: var(--t2); cursor: pointer;
+  font-family: 'Outfit', sans-serif; transition: .2s;
+}
+.btn-resend:hover { border-color: var(--c1); color: var(--c3); }
+
+/* RESET SCREEN */
+.reset-screen { display: none; }
+.reset-screen.active { display: block; }
+
+/* PROFILE COMPLETE */
+.step-indicator {
+  display: flex; gap: 8px; margin-bottom: 28px; align-items: center;
+}
+.step-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--s2); transition: .3s;
+}
+.step-dot.done { background: var(--c1); }
+.step-line { flex: 1; height: 2px; background: var(--s2); border-radius: 1px; transition: .3s; }
+.step-line.done { background: var(--c1); }
+
+/* FADE IN ANIM */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .left-panel { display: none; }
+  .right-panel { padding: 32px 24px; align-items: flex-start; padding-top: 60px; }
+  .auth-box { max-width: 100%; }
+}
+
+/* FIREBASE CONFIG NOTICE */
+.config-notice {
+  background: rgba(245,158,11,.08);
+  border: 1px solid rgba(245,158,11,.2);
+  border-radius: var(--rs);
+  padding: 14px 16px;
+  font-size: 13px;
+  color: #FCD34D;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  line-height: 1.6;
+}
+.config-notice a {
+  color: var(--gold);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* DEMO MODE badge */
+.demo-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(245,158,11,.12);
+  border: 1px solid rgba(245,158,11,.25);
+  border-radius: 50px; padding: 4px 12px;
+  font-size: 11px; color: var(--gold);
+  margin-bottom: 16px;
+}
+</style>
+</head>
+<body>
+
+<!-- BG -->
+<div class="bg-canvas">
+  <div class="grid-lines"></div>
+  <div class="float-orbs">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+    <div class="left-logo">
+      <div class="logo-icon">🎟</div>
+      <div class="logo-text">Rifa<span>Pro</span></div>
+    </div>
+
+    <div class="left-hero">
+      <div class="left-tag">
+        <div class="left-tag-dot"></div>
+        Plataforma completa de rifas
+      </div>
+      <h1 class="left-h1">Crie e gerencie suas rifas com <span class="grad">total controle</span></h1>
+      <p class="left-sub">Cadastre-se gratuitamente e tenha acesso ao painel completo: bilhetes, compradores, sorteio ao vivo e muito mais.</p>
+
+      <div class="features">
+        <div class="feature-item">
+          <div class="feature-icon fi-purple">🎟</div>
+          <div class="feature-text">
+            <h4>Gestão de bilhetes</h4>
+            <p>Grade visual, controle de vendidos, pendentes e disponíveis</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon fi-cyan">💳</div>
+          <div class="feature-text">
+            <h4>Checkout integrado</h4>
+            <p>Site público com checkout em 4 etapas e Pix configurável</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon fi-gold">🎲</div>
+          <div class="feature-text">
+            <h4>Sorteio ao vivo</h4>
+            <p>Animação de sorteio transparente com histórico completo</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon fi-green">📊</div>
+          <div class="feature-text">
+            <h4>Relatórios e financeiro</h4>
+            <p>Gráficos de vendas, arrecadado e potencial de receita</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="left-bottom">
+      © 2025 RifaPro · Todos os direitos reservados
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel">
+    <div class="auth-box">
+
+      <!-- AVISO DE CONFIGURAÇÃO (remova após configurar Firebase) -->
+      <div class="config-notice" id="config-notice">
+        ⚙️ <div>
+          <strong>Configure o Firebase antes de publicar.</strong><br>
+          Substitua as variáveis <code>firebaseConfig</code> abaixo com as suas credenciais em
+          <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a>.
+          Em modo demo, os dados ficam apenas no navegador.
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchTab('login')">Entrar</button>
+        <button class="auth-tab" onclick="switchTab('register')">Criar conta</button>
+      </div>
+
+      <!-- ALERT GLOBAL -->
+      <div class="alert" id="global-alert">
+        <span class="alert-icon" id="alert-icon">ℹ️</span>
+        <span id="alert-msg"></span>
+      </div>
+
+      <!-- ══════════ LOGIN ══════════ -->
+      <div class="form-screen active" id="screen-login">
+        <h2 class="auth-title">Bem-vindo de volta 👋</h2>
+        <p class="auth-sub">Entre na sua conta para gerenciar suas rifas</p>
+
+        <!-- Google -->
+        <button class="btn-google" onclick="loginGoogle()">
+          <svg class="google-icon" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+          Continuar com Google
+        </button>
+
+        <div class="divider">
+          <div class="divider-line"></div>
+          <div class="divider-text">ou com e-mail</div>
+          <div class="divider-line"></div>
+        </div>
+
+        <div class="fg">
+          <label>E-mail</label>
+          <div class="input-wrap">
+            <span class="input-icon">✉️</span>
+            <input type="email" id="login-email" placeholder="seu@email.com" autocomplete="email">
+          </div>
+        </div>
+        <div class="fg">
+          <label>
+            Senha
+            <a class="forgot-link" href="#" onclick="mostrarReset(event)">Esqueci minha senha</a>
+          </label>
+          <div class="input-wrap">
+            <span class="input-icon">🔒</span>
+            <input type="password" id="login-senha" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')fazerLogin()">
+          </div>
+        </div>
+
+        <button class="btn-auth" onclick="fazerLogin()" id="btn-login">
+          <span class="btn-spinner" id="spin-login"></span>
+          Entrar na conta
+        </button>
+
+        <p class="terms-text" style="margin-top:20px">
+          Não tem conta? <a href="#" onclick="switchTab('register');return false">Criar conta grátis →</a>
+        </p>
+      </div>
+
+      <!-- ══════════ REGISTER ══════════ -->
+      <div class="form-screen" id="screen-register">
+        <h2 class="auth-title">Criar conta grátis ✨</h2>
+        <p class="auth-sub">Comece a gerenciar suas rifas em menos de 1 minuto</p>
+
+        <!-- Steps indicator -->
+        <div class="step-indicator" id="reg-steps">
+          <div class="step-dot done" id="rdot1"></div>
+          <div class="step-line" id="rline1"></div>
+          <div class="step-dot" id="rdot2"></div>
+          <div class="step-line" id="rline2"></div>
+          <div class="step-dot" id="rdot3"></div>
+        </div>
+
+        <!-- STEP 1: dados básicos -->
+        <div id="reg-step1" class="reg-step">
+          <button class="btn-google" onclick="loginGoogle()">
+            <svg class="google-icon" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Cadastrar com Google (recomendado)
+          </button>
+
+          <div class="divider">
+            <div class="divider-line"></div>
+            <div class="divider-text">ou preencha os dados</div>
+            <div class="divider-line"></div>
+          </div>
+
+          <div class="fg-row">
+            <div class="fg" style="margin:0">
+              <label>Nome</label>
+              <div class="input-wrap">
+                <span class="input-icon">👤</span>
+                <input type="text" id="reg-nome" placeholder="Seu nome" autocomplete="given-name">
+              </div>
+            </div>
+            <div class="fg" style="margin:0">
+              <label>Sobrenome</label>
+              <div class="input-wrap">
+                <span class="input-icon">👤</span>
+                <input type="text" id="reg-sobrenome" placeholder="Sobrenome">
+              </div>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label>E-mail</label>
+            <div class="input-wrap">
+              <span class="input-icon">✉️</span>
+              <input type="email" id="reg-email" placeholder="seu@email.com" oninput="validarEmailReg()" autocomplete="email">
+            </div>
+            <div class="field-error" id="err-email">E-mail inválido</div>
+          </div>
+
+          <div class="fg">
+            <label>WhatsApp (opcional)</label>
+            <div class="input-wrap">
+              <span class="input-icon">📱</span>
+              <input type="tel" id="reg-tel" placeholder="(xx) xxxxx-xxxx">
+            </div>
+          </div>
+
+          <div class="fg">
+            <label>Senha</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="reg-senha" placeholder="Mín. 8 caracteres" oninput="avaliarSenha(this.value)" autocomplete="new-password">
+            </div>
+            <div class="pw-strength" id="pw-strength">
+              <div class="pw-bars">
+                <div class="pw-bar" id="pb1"></div>
+                <div class="pw-bar" id="pb2"></div>
+                <div class="pw-bar" id="pb3"></div>
+                <div class="pw-bar" id="pb4"></div>
+              </div>
+              <div class="pw-label" id="pw-label">Digite uma senha</div>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label>Confirmar senha</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="reg-confirma" placeholder="Repita a senha" oninput="validarConfirma()" autocomplete="new-password">
+            </div>
+            <div class="field-error" id="err-confirma">As senhas não coincidem</div>
+          </div>
+
+          <button class="btn-auth" onclick="proximoPasso()" id="btn-reg-next">
+            Próximo passo →
+          </button>
+        </div>
+
+        <!-- STEP 2: perfil do organizador -->
+        <div id="reg-step2" class="reg-step" style="display:none">
+          <p class="auth-sub" style="margin-bottom:20px">Conte um pouco sobre como usará a plataforma</p>
+
+          <div class="fg">
+            <label>Nome da sua organização / marca (opcional)</label>
+            <div class="input-wrap">
+              <span class="input-icon">🏷️</span>
+              <input type="text" id="reg-org" placeholder="Ex: Rifa do João, Associação X">
+            </div>
+          </div>
+
+          <div class="fg">
+            <label>Cidade e estado</label>
+            <div class="input-wrap">
+              <span class="input-icon">📍</span>
+              <input type="text" id="reg-cidade" placeholder="Ex: São Paulo, SP">
+            </div>
+          </div>
+
+          <div class="fg">
+            <label>Quantas rifas pretende criar por mês?</label>
+            <select id="reg-frequencia" style="width:100%;padding:12px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--rs);color:var(--t1);font-size:14px;font-family:'Outfit',sans-serif;outline:none;transition:.2s">
+              <option value="">Selecione...</option>
+              <option value="1">1 rifa por mês</option>
+              <option value="2-5">2 a 5 rifas por mês</option>
+              <option value="5+">Mais de 5 rifas por mês</option>
+              <option value="esporadico">Esporádico / teste</option>
+            </select>
+          </div>
+
+          <div style="display:flex;gap:10px">
+            <button class="btn-auth" onclick="voltarPasso()" style="background:var(--s1);box-shadow:none;flex:0 0 auto;width:auto;padding:13px 20px;color:var(--t2)">← Voltar</button>
+            <button class="btn-auth" onclick="finalizarCadastro()" id="btn-reg-final" style="flex:1">
+              <span class="btn-spinner" id="spin-reg"></span>
+              Criar minha conta ✨
+            </button>
+          </div>
+        </div>
+
+        <p class="terms-text">
+          Ao criar conta, você concorda com os <a href="#">Termos de Uso</a> e a <a href="#">Política de Privacidade</a>.
+        </p>
+      </div>
+
+      <!-- ══════════ VERIFICAÇÃO DE E-MAIL ══════════ -->
+      <div class="verify-screen" id="screen-verify">
+        <div class="verify-icon">📬</div>
+        <div class="verify-title">Verifique seu e-mail</div>
+        <p class="verify-sub">Enviamos um link de confirmação para:</p>
+        <div class="verify-email-display" id="verify-email-show">—</div>
+        <p class="verify-sub">Clique no link e depois retorne aqui para entrar na sua conta.</p>
+        <button class="btn-resend" onclick="reenviarVerificacao()">↺ Reenviar e-mail</button>
+        <div style="margin-top:20px">
+          <a href="#" onclick="switchTab('login');return false" style="font-size:13px;color:var(--t3);text-decoration:none">← Voltar para login</a>
+        </div>
+      </div>
+
+      <!-- ══════════ RESET DE SENHA ══════════ -->
+      <div class="reset-screen" id="screen-reset">
+        <h2 class="auth-title">Recuperar senha 🔑</h2>
+        <p class="auth-sub">Informe seu e-mail e enviaremos um link para redefinir sua senha.</p>
+
+        <div class="fg">
+          <label>E-mail cadastrado</label>
+          <div class="input-wrap">
+            <span class="input-icon">✉️</span>
+            <input type="email" id="reset-email" placeholder="seu@email.com">
+          </div>
+        </div>
+        <button class="btn-auth" onclick="enviarReset()" id="btn-reset">
+          <span class="btn-spinner" id="spin-reset"></span>
+          Enviar link de redefinição
+        </button>
+        <p class="terms-text" style="margin-top:16px">
+          <a href="#" onclick="switchTab('login');return false">← Lembrei minha senha</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     FIREBASE SDK
+     Substitua firebaseConfig com suas credenciais!
+     Console: https://console.firebase.google.com
+═══════════════════════════════════════════════ -->
+<script type="module">
+// ─── 1. COLE SUA CONFIGURAÇÃO FIREBASE AQUI ──────────────────────────────────
+const firebaseConfig = {
+  apiKey: "AIzaSyAGuzl4uRvDXkJFF4we_gkSm5U1o0crB24",
+  authDomain: "rifa-app-3bfa4.firebaseapp.com",
+  projectId: "rifa-app-3bfa4",
+  storageBucket: "rifa-app-3bfa4.firebasestorage.app",
+  messagingSenderId: "669382572313",
+  appId: "1:669382572313:web:bf467b6e7bd911b0006d88",
+  measurementId: "G-R5B2SWNLMY"
+};
+
+// ─── 2. FIREBASE INIT ─────────────────────────────────────────────────────────
+let auth, googleProvider;
+let firebaseReady = false;
+
+try {
+  const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js');
+  const {
+    getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+    sendEmailVerification, sendPasswordResetEmail,
+    GoogleAuthProvider, signInWithPopup, onAuthStateChanged, updateProfile
+  } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js');
+
+  const app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  googleProvider = new GoogleAuthProvider();
+  firebaseReady = true;
+  const analytics = getAnalytics(app);
+
+  // Ocultar notice se firebase configurado (apiKey real)
+  if (!firebaseConfig.apiKey.includes('SUA_')) {
+    document.getElementById('config-notice').style.display = 'none';
+  }
+
+  // ─── AUTH STATE LISTENER ─────────────────────────────────────────────────
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // Salvar dados do usuário
+      const userData = {
+        uid: user.uid,
+        nome: user.displayName || '',
+        email: user.email,
+        foto: user.photoURL || '',
+        loggedAt: new Date().toISOString()
+      };
+      localStorage.setItem('rifapro_user', JSON.stringify(userData));
+
+      if (!user.emailVerified && user.providerData[0]?.providerId === 'password') {
+        mostrarVerify(user.email);
+        return;
+      }
+
+      // Redirecionar para o app
+      showAlert('Login realizado! Redirecionando...', 'success');
+      setTimeout(() => {
+        window.location.href = 'rifa-app.html';
+      }, 1200);
+    }
+  });
+
+  // ─── FUNÇÕES FIREBASE ─────────────────────────────────────────────────────
+  window.fazerLogin = async () => {
+    const email = document.getElementById('login-email').value.trim();
+    const senha = document.getElementById('login-senha').value;
+    if (!email || !senha) { showAlert('Preencha e-mail e senha', 'error'); return; }
+    setLoading('btn-login', 'spin-login', true);
+    try {
+      await signInWithEmailAndPassword(auth, email, senha);
+    } catch (e) {
+      setLoading('btn-login', 'spin-login', false);
+      showAlert(erroFirebase(e.code), 'error');
+    }
+  };
+
+  window.finalizarCadastro = async () => {
+    const nome = document.getElementById('reg-nome').value.trim();
+    const sobrenome = document.getElementById('reg-sobrenome').value.trim();
+    const email = document.getElementById('reg-email').value.trim();
+    const senha = document.getElementById('reg-senha').value;
+    if (!email || !senha) { showAlert('Preencha todos os campos', 'error'); return; }
+    setLoading('btn-reg-final', 'spin-reg', true);
+    try {
+      const cred = await createUserWithEmailAndPassword(auth, email, senha);
+      await updateProfile(cred.user, { displayName: (nome + ' ' + sobrenome).trim() });
+      await sendEmailVerification(cred.user);
+      // Salvar dados extras
+      const perfil = {
+        uid: cred.user.uid,
+        nome: (nome + ' ' + sobrenome).trim(),
+        email,
+        tel: document.getElementById('reg-tel').value.trim(),
+        org: document.getElementById('reg-org').value.trim(),
+        cidade: document.getElementById('reg-cidade').value.trim(),
+        frequencia: document.getElementById('reg-frequencia').value,
+        criadoEm: new Date().toISOString()
+      };
+      localStorage.setItem('rifapro_perfil', JSON.stringify(perfil));
+      mostrarVerify(email);
+    } catch (e) {
+      setLoading('btn-reg-final', 'spin-reg', false);
+      showAlert(erroFirebase(e.code), 'error');
+    }
+  };
+
+  window.loginGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (e) {
+      if (e.code !== 'auth/popup-closed-by-user') showAlert(erroFirebase(e.code), 'error');
+    }
+  };
+
+  window.enviarReset = async () => {
+    const email = document.getElementById('reset-email').value.trim();
+    if (!email) { showAlert('Informe seu e-mail', 'error'); return; }
+    setLoading('btn-reset', 'spin-reset', true);
+    try {
+      await sendPasswordResetEmail(auth, email);
+      showAlert('Link enviado! Verifique sua caixa de entrada.', 'success');
+    } catch (e) {
+      showAlert(erroFirebase(e.code), 'error');
+    }
+    setLoading('btn-reset', 'spin-reset', false);
+  };
+
+  window.reenviarVerificacao = async () => {
+    if (auth.currentUser) {
+      try {
+        await sendEmailVerification(auth.currentUser);
+        showAlert('E-mail reenviado!', 'success');
+      } catch (e) {
+        showAlert('Aguarde antes de reenviar.', 'error');
+      }
+    }
+  };
+
+} catch (err) {
+  console.warn('Firebase não configurado — modo demo ativo.', err);
+  // Modo demo: login simulado
+  window.fazerLogin = () => loginDemo();
+  window.finalizarCadastro = () => cadastroDemo();
+  window.loginGoogle = () => loginDemo('Google');
+  window.enviarReset = () => {
+    showAlert('Link enviado (modo demo — configure o Firebase)', 'info');
+  };
+  window.reenviarVerificacao = () => showAlert('Reenviado (modo demo)', 'info');
+}
+
+// ─── MODO DEMO (sem Firebase) ─────────────────────────────────────────────────
+function loginDemo(metodo = 'email') {
+  const email = document.getElementById('login-email')?.value.trim() || 'demo@rifapro.com';
+  const users = JSON.parse(localStorage.getItem('rfp_users') || '[]');
+  const user = metodo === 'Google'
+    ? { nome: 'Usuário Demo', email: 'demo@google.com' }
+    : users.find(u => u.email === email);
+
+  if (metodo !== 'Google' && !user) {
+    showAlert('E-mail não encontrado. Crie uma conta primeiro.', 'error'); return;
+  }
+  const dados = user || { nome: 'Usuário Demo', email };
+  localStorage.setItem('rifapro_user', JSON.stringify({ ...dados, loggedAt: new Date().toISOString() }));
+  showAlert('Login realizado! (modo demo) Redirecionando...', 'success');
+  setTimeout(() => window.location.href = 'rifa-app.html', 1400);
+}
+
+function cadastroDemo() {
+  const nome = document.getElementById('reg-nome')?.value.trim();
+  const email = document.getElementById('reg-email')?.value.trim();
+  if (!nome || !email) { showAlert('Preencha nome e e-mail', 'error'); return; }
+  const users = JSON.parse(localStorage.getItem('rfp_users') || '[]');
+  if (users.find(u => u.email === email)) { showAlert('E-mail já cadastrado', 'error'); return; }
+  const perfil = {
+    nome: nome + ' ' + (document.getElementById('reg-sobrenome')?.value.trim() || ''),
+    email,
+    tel: document.getElementById('reg-tel')?.value.trim() || '',
+    org: document.getElementById('reg-org')?.value.trim() || '',
+    cidade: document.getElementById('reg-cidade')?.value.trim() || '',
+    criadoEm: new Date().toISOString()
+  };
+  users.push(perfil);
+  localStorage.setItem('rfp_users', JSON.stringify(users));
+  localStorage.setItem('rifapro_user', JSON.stringify({ ...perfil, loggedAt: new Date().toISOString() }));
+  showAlert('Conta criada! Redirecionando...', 'success');
+  setTimeout(() => window.location.href = 'rifa-app.html', 1400);
+}
+
+// ─── UTILS ───────────────────────────────────────────────────────────────────
+function erroFirebase(code) {
+  const msgs = {
+    'auth/email-already-in-use': 'E-mail já cadastrado. Tente fazer login.',
+    'auth/invalid-email': 'E-mail inválido.',
+    'auth/weak-password': 'Senha muito fraca. Use ao menos 6 caracteres.',
+    'auth/user-not-found': 'E-mail não encontrado.',
+    'auth/wrong-password': 'Senha incorreta.',
+    'auth/too-many-requests': 'Muitas tentativas. Tente novamente em alguns minutos.',
+    'auth/network-request-failed': 'Erro de conexão. Verifique sua internet.',
+    'auth/invalid-credential': 'E-mail ou senha incorretos.',
+  };
+  return msgs[code] || 'Ocorreu um erro. Tente novamente.';
+}
+
+function setLoading(btnId, spinId, on) {
+  const btn = document.getElementById(btnId);
+  const spin = document.getElementById(spinId);
+  if (!btn) return;
+  btn.disabled = on;
+  if (spin) spin.style.display = on ? 'block' : 'none';
+}
+window._setLoading = setLoading;
+
+</script>
+
+<script>
+// ─── UI LOGIC (não depende do Firebase) ──────────────────────────────────────
+let currentTab = 'login';
+let regStep = 1;
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.auth-tab').forEach((t, i) => {
+    t.classList.toggle('active', (i === 0 && tab === 'login') || (i === 1 && tab === 'register'));
+  });
+  document.querySelectorAll('.form-screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.verify-screen, .reset-screen').forEach(s => {
+    s.classList.remove('active');
+    s.style.display = 'none';
+  });
+
+  if (tab === 'login') {
+    document.getElementById('screen-login').classList.add('active');
+    document.getElementById('auth-title-dynamic') && (document.getElementById('auth-title-dynamic').textContent = 'Bem-vindo de volta 👋');
+  } else {
+    document.getElementById('screen-register').classList.add('active');
+    regStep = 1; renderRegStep();
+  }
+  clearAlert();
+}
+
+function mostrarVerify(email) {
+  document.querySelectorAll('.form-screen').forEach(s => s.classList.remove('active'));
+  const vs = document.getElementById('screen-verify');
+  vs.classList.add('active');
+  vs.style.display = 'block';
+  document.getElementById('verify-email-show').textContent = email;
+}
+
+function mostrarReset(e) {
+  e.preventDefault();
+  document.querySelectorAll('.form-screen').forEach(s => s.classList.remove('active'));
+  const rs = document.getElementById('screen-reset');
+  rs.classList.add('active');
+  rs.style.display = 'block';
+}
+
+// REGISTER STEPS
+function renderRegStep() {
+  document.getElementById('reg-step1').style.display = regStep === 1 ? 'block' : 'none';
+  document.getElementById('reg-step2').style.display = regStep === 2 ? 'block' : 'none';
+  ['rdot1','rdot2','rdot3'].forEach((id, i) => {
+    document.getElementById(id).classList.toggle('done', i < regStep);
+  });
+  ['rline1','rline2'].forEach((id, i) => {
+    document.getElementById(id).classList.toggle('done', i < regStep - 1);
+  });
+}
+
+function proximoPasso() {
+  const email = document.getElementById('reg-email').value.trim();
+  const senha = document.getElementById('reg-senha').value;
+  const confirma = document.getElementById('reg-confirma').value;
+  const nome = document.getElementById('reg-nome').value.trim();
+  if (!nome) { showAlert('Informe seu nome', 'error'); return; }
+  if (!email || !/\S+@\S+\.\S+/.test(email)) { showAlert('E-mail inválido', 'error'); return; }
+  if (senha.length < 8) { showAlert('Senha muito curta — mínimo 8 caracteres', 'error'); return; }
+  if (senha !== confirma) { showAlert('As senhas não coincidem', 'error'); return; }
+  regStep = 2; clearAlert(); renderRegStep();
+}
+
+function voltarPasso() {
+  regStep = 1; clearAlert(); renderRegStep();
+}
+
+// PASSWORD STRENGTH
+function avaliarSenha(v) {
+  const bars = [document.getElementById('pb1'), document.getElementById('pb2'), document.getElementById('pb3'), document.getElementById('pb4')];
+  const lbl = document.getElementById('pw-label');
+  bars.forEach(b => { b.className = 'pw-bar'; });
+  if (!v) { lbl.textContent = 'Digite uma senha'; lbl.style.color = 'var(--t3)'; return; }
+  let score = 0;
+  if (v.length >= 8) score++;
+  if (/[A-Z]/.test(v)) score++;
+  if (/[0-9]/.test(v)) score++;
+  if (/[^A-Za-z0-9]/.test(v)) score++;
+  const levels = ['weak','weak','medium','strong','strong'];
+  const texts = ['Muito fraca','Fraca','Média','Forte','Muito forte'];
+  const colors = ['var(--red)','var(--red)','var(--gold)','var(--green)','var(--green)'];
+  for (let i = 0; i < score; i++) bars[i].classList.add(levels[score]);
+  lbl.textContent = texts[score];
+  lbl.style.color = colors[score];
+}
+
+function validarEmailReg() {
+  const v = document.getElementById('reg-email').value;
+  const err = document.getElementById('err-email');
+  const valid = /\S+@\S+\.\S+/.test(v);
+  err.style.display = v && !valid ? 'block' : 'none';
+  document.getElementById('reg-email').classList.toggle('error', v && !valid);
+  document.getElementById('reg-email').classList.toggle('ok', valid);
+}
+
+function validarConfirma() {
+  const s = document.getElementById('reg-senha').value;
+  const c = document.getElementById('reg-confirma').value;
+  const err = document.getElementById('err-confirma');
+  const match = s === c;
+  err.style.display = c && !match ? 'block' : 'none';
+  document.getElementById('reg-confirma').classList.toggle('error', c && !match);
+  document.getElementById('reg-confirma').classList.toggle('ok', c && match);
+}
+
+// ALERT
+function showAlert(msg, type = 'info') {
+  const el = document.getElementById('global-alert');
+  const icon = document.getElementById('alert-icon');
+  const msgEl = document.getElementById('alert-msg');
+  const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+  el.className = 'alert show ' + type;
+  icon.textContent = icons[type] || 'ℹ️';
+  msgEl.textContent = msg;
+}
+function clearAlert() {
+  document.getElementById('global-alert').className = 'alert';
+}
+
+// STUBS para quando Firebase não carregou ainda
+if (!window.fazerLogin) window.fazerLogin = () => showAlert('Aguarde o carregamento...', 'info');
+if (!window.finalizarCadastro) window.finalizarCadastro = () => showAlert('Aguarde o carregamento...', 'info');
+if (!window.loginGoogle) window.loginGoogle = () => showAlert('Aguarde o carregamento...', 'info');
+if (!window.enviarReset) window.enviarReset = () => {};
+if (!window.reenviarVerificacao) window.reenviarVerificacao = () => {};
+
+// Verificar se já está logado
+const u = localStorage.getItem('rifapro_user');
+if (u) {
+  try {
+    const parsed = JSON.parse(u);
+    if (parsed?.email) {
+      // Já logado — adicionar botão de acesso rápido
+      const box = document.querySelector('.auth-box');
+      const notice = document.createElement('div');
+      notice.innerHTML = `
+        <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:var(--rs);padding:14px 16px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div style="font-size:13.5px"><span style="color:#34D399;font-weight:600">✓ Conectado como ${parsed.nome||parsed.email}</span><br><span style="color:var(--t3);font-size:12px">${parsed.email}</span></div>
+          <div style="display:flex;gap:8px;flex-shrink:0">
+            <a href="rifa-app.html" style="background:var(--green);color:#fff;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none">Acessar →</a>
+            <button onclick="localStorage.removeItem('rifapro_user');this.closest('div').parentElement.remove()" style="background:transparent;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:8px 10px;color:var(--t3);cursor:pointer;font-size:12px">Sair</button>
+          </div>
+        </div>`;
+      box.prepend(notice);
+    }
+  } catch(e) {}
+}
+</script>
+</body>
+</html>
